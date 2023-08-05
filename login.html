@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login – Recipe Chat UI</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins&display=swap' rel='stylesheet'>
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #F9F9F9;
+        }
+
+        .navbar {
+            background-color: #FFFFFF;
+            padding: 20px 0;
+            border-bottom: 1px solid #E8E8E8;
+        }
+
+        .navbar a {
+            color: #555;
+            text-decoration: none;
+            font-size: 1.2rem;
+            display: block;
+            padding: 8px;
+        }
+
+        .navbar a:hover {
+            color: #000;
+            font-weight: bold;
+        }
+
+        .header {
+            text-align: center;
+            padding: 60px 0 20px 0;
+        }
+
+        .header h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .form-container {
+            background-color: #FFFFFF;
+            padding: 40px;
+            margin: 3rem;
+            border: 1px solid #E8E8E8;
+            border-radius: 4px;
+            box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.1);
+        }
+
+        .form-control {
+            border: 1px solid #EFEFEF;
+            border-radius: 4px;
+            box-shadow: none;
+        }
+
+        .submit {
+            margin-top: 20px;
+            width: 100%;
+            padding: 10px;
+            background-color: #FF6B6B;
+            border: 1px solid #FF6B6B;
+            color: #fff;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+
+        .submit:hover {
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="index.html" class="nav-link">Login</a>
+            <a href="mypage.html" class="nav-link">My Page</a>
+            <a href="#" class="nav-link">Today's Menu</a>
+            <a href="review.html" class="nav-link">Review</a>
+            <a href="recipe.html" class="nav-link">Recipe</a>
+        </div>
+    </nav>
+    <div class="header">
+        <h3>Login</h3>
+    </div>
+    <div class="container">
+        <div class="form-container">
+            <form action="/login" method="post">
+
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Enter your password">
+                </div>
+                <button type="submit" class="btn submit">Login</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        async function loginUser() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            const response = await fetch('http://localhost:3000/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                })
+            });
+            const data = await response.json();
+            if (data.success) {
+                window.location.href = 'index.html';
+            } else {
+                alert('Invalid email or password. Please try again.');
+            }
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

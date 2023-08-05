@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins&display=swap' rel='stylesheet'>
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #F9F9F9;
+        }
+
+        .navbar {
+            background-color: #FFFFFF;
+            padding: 20px 0;
+            border-bottom: 1px solid #E8E8E8;
+        }
+
+        .navbar a {
+            color: #555;
+            text-decoration: none;
+            font-size: 1.2rem;
+            display: block;
+            padding: 8px;
+        }
+
+        .navbar a:hover {
+            color: #000;
+            font-weight: bold;
+        }
+
+        h1 {
+            text-align: center;
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            padding: 20px;
+        }
+
+        .grid-item {
+            background-color: white;
+            color: black;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            border-radius: 4px;
+        }
+
+        .grid-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="index.html" class="nav-link">Login</a>
+            <a href="mypage.html" class="nav-link">My Page</a>
+            <a href="#" class="nav-link">Today's Menu</a>
+            <a href="review.html" class="nav-link">Review</a>
+            <a href="recipe.html" class="nav-link">Recipe</a>
+        </div>
+    </nav>
+
+    <h1>Recipes</h1>
+
+    <div class="container">
+        <div class="grid-container">
+
+        </div>
+    </div>
+    <script>
+        const recipeNames = [
+            "Spaghetti Carbonara",
+            "Grilled Cheese Sandwich",
+            "Sushi",
+            "Tacos",
+            "Pizza",
+            "Burger",
+            "Salad",
+            "French Fries",
+            "Fried Chicken",
+            "Burrito",
+            "Bibimbap",
+            "Pho",
+            "Dumplings",
+            "Pad Thai",
+            "Curry",
+            "Hot Dog",
+            "Kimbap",
+            "Kimchi Jjigae",
+            "Korean BBQ",
+            "Bulgogi",
+            "Japchae",
+            "Gyoza",
+            "Katsu",
+            "Udon",
+            "Poke",
+            "Quesadia"
+        ];
+        const recipeLinks = {
+            "Spaghetti Carbonara": "https://www.10000recipe.com/recipe/3845351",
+            "Grilled Cheese Sandwich":"https://www.10000recipe.com/recipe/6742261",
+            "Sushi":'https://www.10000recipe.com/recipe/6900751',
+            "Tacos":'https://www.10000recipe.com/recipe/6605926',
+            "Pizza":'https://www.10000recipe.com/recipe/6895534',
+            "Burger":'https://www.10000recipe.com/recipe/5396084',
+            "Salad":'https://www.10000recipe.com/recipe/6870877',
+            "French Fries":'https://www.10000recipe.com/recipe/6958849',
+            "Fried Chicken":'https://www.10000recipe.com/recipe/6893878',
+            "Burrito":'https://www.10000recipe.com/recipe/6915979',
+            "Bibimbap":'https://www.10000recipe.com/recipe/6839413',
+            "Pho":'https://www.10000recipe.com/recipe/4466384',
+            "Dumplings":'https://www.10000recipe.com/recipe/6877320',
+            "Pad Thai":'https://www.10000recipe.com/recipe/6852113',
+            "Curry":'https://www.10000recipe.com/recipe/6893360',
+            "Hot Dog":'https://www.10000recipe.com/recipe/7006385',
+            "Kimbap":'https://www.10000recipe.com/recipe/6843418',
+            "Kimchi Jjigae":'https://www.10000recipe.com/recipe/3686217',
+            "Korean BBQ":'https://www.10000recipe.com/recipe/6896510',
+            "Bulgogi":'https://www.10000recipe.com/recipe/6863296',
+            "Japchae":'https://www.10000recipe.com/recipe/6879533',
+            "Gyoza":'https://www.10000recipe.com/recipe/6868558',
+            "Katsu":'https://www.10000recipe.com/recipe/6850809',
+            "Udon":'https://www.10000recipe.com/recipe/6880682',
+            "Poke":'https://www.10000recipe.com/recipe/6924748',
+            "Quesadia":'https://www.10000recipe.com/recipe/6846168'
+        };
+        
+
+        const recipeImages = {
+            "Spaghetti Carbonara": [
+                "https://img-cf.kurly.com/shop/data/goodsview/20220503/gv30000310353_1.jpg"
+            ],
+            "Grilled Cheese Sandwich": [
+                "https://thefamilydinnerproject.org/wp-content/uploads/2014/07/Easy-grilled-chicken-sandwich.jpg"
+            ],
+            "Sushi": [
+                "https://izzycooking.com/wp-content/uploads/2022/04/Sushi-01.jpg"
+            ],
+            "Tacos": ["https://kristineskitchenblog.com/wp-content/uploads/2023/02/tacos-recipe-16-2.jpg"
+            ],
+            "Pizza": ["https://hips.hearstapps.com/hmg-prod/images/classic-cheese-pizza-recipe-2-64429a0cb408b.jpg?crop=0.8888888888888888xw:1xh;center,top&resize=1200:*"],
+            "Burger": ["https://www.thecookierookie.com/wp-content/uploads/2023/04/featured-stovetop-burgers-recipe.jpg"],
+            "Salad": ["https://cdn.loveandlemons.com/wp-content/uploads/2019/07/salad.jpg"],
+            "French Fries": ["https://thecozycook.com/wp-content/uploads/2020/02/Copycat-McDonalds-French-Fries-.jpg"],
+            "Fried Chicken": ["https://food.fnr.sndimg.com/content/dam/images/food/fullset/2012/11/2/0/DV1510H_fried-chicken-recipe-10_s4x3.jpg.rend.hgtvcom.406.406.suffix/1568222255998.jpeg"],
+            "Bibimbap": ["https://i.namu.wiki/i/dgjXU86ae29hDSCza-L0GZlFt3T9lRx1Ug9cKtqWSzMzs7Cd0CN2SzyLFEJcHVFviKcxAlIwxcllT9s2sck0RA.jpg"],
+            "pho": ['https://s3.ap-northeast-2.amazonaws.com/meesig/v3/prod/image/item/main/558/037181ec098f4e269be53e1f67eb81e320180327102629'],
+            "Dumplings": ['https://twoplaidaprons.com/wp-content/uploads/2020/05/Chinese-pork-dumplings-picking-up-a-dumpling-with-chopsticks.jpg'],
+
+            "Pad Thai": ['https://tastesbetterfromscratch.com/wp-content/uploads/2018/08/Pad-Thai-Web-7.jpg'],
+
+            "Curry": ['https://recipe1.ezmember.co.kr/cache/recipe/2020/10/13/4bef6dd54a1395e9920a3489839317b51.jpg'],
+
+            "Hot Dog": ['https://www.google.com/search?rlz=1C1NDCM_koKR936KR936&sxsrf=AB5stBh9SIcljDZkkA2DTQah0UK70vKtgg:1691162917827&q=%ED%95%AB%EB%8F%84%EA%B7%B8&tbm=isch&source=lnms&sa=X&ved=2ahUKEwivteXnqMOAAxUddvUHHXu3DSwQ0pQJegQIDRAB&biw=960&bih=930&dpr=1#imgrc=6eP-TGaJPxdPMM'],
+
+            "Kimbap": ["https://recipe1.ezmember.co.kr/cache/recipe/2016/04/08/1d26c0444e724bca8ed271b24da0057a1.jpg"],
+
+            "Kimchi Jjigae": ['https://cdn.imweb.me/thumbnail/20220801/67e70f849e80f.jpg'],
+            "Korean BBQ": ['https://cdn.imweb.me/thumbnail/20220801/67e70f849e80f.jpg'],
+            "Bulgogi": ['https://recipe1.ezmember.co.kr/cache/recipe/2019/03/03/11baafbe81803965b17c3ab42a5992cb1.jpg'],
+            "Japchae": ['https://www.google.com/search?q=%EC%9E%A1%EC%B1%84&tbm=isch&ved=2ahUKEwig3IyzqcOAAxWXtlYBHVsHDu4Q2-cCegQIABAA&oq=%EC%9E%A1%EC%B1%84&gs_lcp=CgNpbWcQAzIICAAQgAQQsQMyBQgAEIAEMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDIFCAAQgAQ6BAgjECc6BwgjEOoCECc6CwgAEIAEELEDEIMBOggIABCxAxCDAToECAAQA1D_AVjFDGDhDmgBcAB4AYABuwGIAZ0IkgEDMC44mAEAoAEBqgELZ3dzLXdpei1pbWewAQrAAQE&sclient=img&ei=wxnNZODuLZft2roP24648A4#imgrc=Jrz45KrH1z2ioM'],
+
+            "Gyoza": ['https://rimage.gnst.jp/livejapan.com/public/article/detail/a/00/00/a0000454/img/basic/a0000454_main.jpg?20170412195628'],
+            "Katsu": ['https://christieathome.com/wp-content/uploads/2021/12/Chicken-Katsu-Updated-3.jpg'],
+            "Udon": ['https://www.justonecookbook.com/wp-content/uploads/2021/11/Beef-Udon-4306-I.jpg'],
+            "Poke": ['https://recipe1.ezmember.co.kr/cache/recipe/2022/03/31/1e58bef999cd6ab6a87c258b8acb84ce1.jpg'],
+            "Quesadia": ['https://recipe1.ezmember.co.kr/cache/recipe/2015/08/21/dcca6b31148b063b95efefff9f14e4f21.jpg']
+            // 여기에 다른 레시피 이미지 URL 배열을 추가하세요.
+        };
+
+        let usedRecipes = new Set();
+
+        function getRandomRecipeName() {
+            if (usedRecipes.size === recipeNames.length) {
+                usedRecipes.clear();
+            }
+
+            let randomIndex;
+            let randomRecipe;
+
+            do {
+                randomIndex = Math.floor(Math.random() * recipeNames.length);
+                randomRecipe = recipeNames[randomIndex];
+            } while (usedRecipes.has(randomRecipe));
+
+            usedRecipes.add(randomRecipe);
+            return randomRecipe;
+        }
+
+
+        function getRandomRecipeImageSrc(recipeName) {
+            const images = recipeImages[recipeName] || [];
+            if (images.length === 0) {
+                // 기본 이미지를 반환하거나 Unsplash API를 사용할 수 있습니다.
+                return "https://example.com/default.jpg";
+            }
+            const randomIndex = Math.floor(Math.random() * images.length);
+            return images[randomIndex];
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const gridContainer = document.querySelector(".grid-container");
+
+            for (let i = 1; i <= 8; i++) {
+                const recipeName = getRandomRecipeName();
+
+                const gridItem = document.createElement("div");
+                gridItem.className = "grid-item";
+                gridItem.dataset.recipeId = i;
+
+                const img = document.createElement("img");
+                img.src = getRandomRecipeImageSrc(recipeName);
+                img.alt = recipeName;
+
+               
+                // Add click event listener to recipe image
+                img.addEventListener("click", function () {
+                    const recipeURL = recipeLinks[recipeName] || "#";
+                    window.location.href = recipeURL;
+                });
+
+
+                const title = document.createElement("h3");
+                title.textContent = recipeName;
+
+                gridItem.appendChild(img);
+                gridItem.appendChild(title);
+                gridContainer.appendChild(gridItem);
+            }
+        });
+
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

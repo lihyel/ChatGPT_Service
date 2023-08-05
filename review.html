@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review – Recipe Chat UI</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins&display=swap' rel='stylesheet'>
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #F9F9F9;
+        }
+
+        .navbar {
+            background-color: #FFFFFF;
+            padding: 20px 0;
+            border-bottom: 1px solid #E8E8E8;
+        }
+
+        .navbar a {
+            color: #555;
+            text-decoration: none;
+            font-size: 1.2rem;
+            display: block;
+            padding: 8px;
+        }
+
+        .navbar a:hover {
+            color: #000;
+            font-weight: bold;
+        }
+
+        .header {
+            text-align: center;
+            padding: 60px 0 20px 0;
+        }
+
+        .header h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .form-container {
+            background-color: #FFFFFF;
+            padding: 40px;
+            margin: 3rem;
+            border: 1px solid #E8E8E8;
+            border-radius: 4px;
+            box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.1);
+        }
+
+        .form-control {
+            border: 1px solid #EFEFEF;
+            border-radius: 4px;
+            box-shadow: none;
+        }
+
+        .submit {
+            margin-top: 20px;
+            width: 100%;
+            padding: 10px;
+            background-color: #FF6B6B;
+            border: 1px solid #FF6B6B;
+            color: #fff;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+
+        .submit:hover {
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .review-list {
+            max-width: 800px;
+            margin: 30px auto;
+        }
+
+        .review-item {
+            background-color: #FFFFFF;
+            border: 1px solid #E8E8E8;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.1);
+        }
+
+        .review-text {
+            margin-bottom: 10px;
+        }
+
+        .review-author {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .review-delete {
+            float: right;
+            color: #ccc;
+            cursor: pointer;
+        }
+
+        .review-delete:hover {
+            color: red;
+        }
+        .star-rating {
+            font-size: 0;
+            text-align: center;
+        }
+        
+        .star-rating__input {
+            display: none;
+        }
+        
+        .star-rating__label {
+            cursor: pointer;
+            color: #ccc;
+            font-size: 2rem;
+        }
+        
+        .star-rating__label:before {
+            content: "★";
+        }
+        
+        .star-rating__input:checked ~ .star-rating__label,
+        .star-rating__label:hover,
+        .star-rating__input:checked ~ .star-rating__label:hover {
+            color: gold;
+        }
+        
+        .star-rating__input:checked ~ .star-rating__label ~ .star-rating__label {
+            color: #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class ="nav-link">Home</a>
+            <a href="index.html" class="nav-link">Login</a>
+            <a href="mypage.html" class="nav-link">My Page</a>
+            <a href="#" class="nav-link">Today's Menu</a>
+            <a href="review.html" class="nav-link">Review</a>
+            <a href="recipe.html" class="nav-link">Recipe</a>
+        </div>
+    </nav>
+    <div class="header">
+        <h3>Write Review</h3>
+    </div>
+    <div class="container">
+        <div class="form-container">
+            <form class="review-form">
+                <div class="form-group">
+                    <label for="review-author">Your name</label>
+                    <input type="text" class="form-control" id="review-author" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="review-text">Write your review</label>
+                    <textarea class="form-control" id="review-text" placeholder="Write your review here" rows="5" required></textarea>
+                </div>
+                <div class="form-group star-rating">
+                    <label for="review-rating">Rating</label>
+                    <input type="radio" name="rating" class="star-rating__input" id="review-rating-5" value="5" required><label for="review-rating-5" class="star-rating__label"></label>
+                    <input type="radio" name="rating" class="star-rating__input" id="review-rating-4" value="4" required><label for="review-rating-4" class="star-rating__label"></label>
+                    <input type="radio" name="rating" class="star-rating__input" id="review-rating-3" value="3" required><label for="review-rating-3" class="star-rating__label"></label>
+                    <input type="radio" name="rating" class="star-rating__input" id="review-rating-2" value="2" required><label for="review-rating-2" class="star-rating__label"></label>
+                    <input type="radio" name="rating" class="star-rating__input" id="review-rating-1" value="1" required><label for="review-rating-1" class="star-rating__label"></label>
+                </div>
+                <button type="button" class="submit" onclick="addReview()">Submit Review</button>
+            </form>
+        </div>
+    </div>
+    <div class="review-list">
+    </div>
+
+    <script>
+        const reviews = [];
+
+        function addReview() {
+            const author = document.getElementById('review-author').value;
+            const text = document.getElementById('review-text').value;
+
+            if (author && text) {
+                reviews.push({ author, text });
+                displayReviews();
+                clearInputFields();
+            }
+        }
+
+        function displayReviews() {
+            const reviewList = document.querySelector('.review-list');
+            reviewList.innerHTML = '';
+
+            for (let i = 0; i < reviews.length; i++) {
+                const reviewItem = document.createElement('div');
+                reviewItem.className = 'review-item';
+                const reviewText = document.createElement('p');
+                reviewText.className = 'review-text';
+                const reviewAuthor = document.createElement('p');
+                reviewAuthor.className = 'review-author';
+                const deleteButton = document.createElement('span');
+                deleteButton.className = 'review-delete';
+                deleteButton.textContent = 'Delete';
+                deleteButton.onclick = () => deleteReview(i);
+
+                reviewAuthor.textContent = reviews[i].author;
+                reviewText.textContent = reviews[i].text;
+
+                reviewItem.appendChild(reviewAuthor);
+                reviewItem.appendChild(reviewText);
+                reviewItem.appendChild(deleteButton);
+                reviewList.appendChild(reviewItem);
+            }
+        }
+
+        function deleteReview(index) {
+            reviews.splice(index, 1);
+            displayReviews();
+        }
+
+        function clearInputFields() {
+            document.getElementById('review-author').value = '';
+            document.getElementById('review-text').value = '';
+        }
+
+        displayReviews();
+    </script>
+</body>
+
+</html>

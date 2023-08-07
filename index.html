@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Recipe Chat UI</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins&display=swap' rel='stylesheet'>
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #F9F9F9;
+        }
+
+        .navbar {
+            background-color: #FFFFFF;
+            padding: 20px 0;
+            border-bottom: 1px solid #E8E8E8;
+        }
+        
+        .navbar a {
+            color: #555;
+            text-decoration: none;
+            font-size: 1.2rem;
+            display: block;
+            padding: 8px;
+        }
+
+        .navbar a:hover {
+            color: #000;
+            font-weight: bold;
+        }
+
+        .header {
+            text-align: center;
+            padding: 60px 0 20px 0;
+        }
+
+        .header h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .chat-container {
+            background-color: #FFFFFF;
+            padding: 40px;
+            margin: 25rem;
+            margin-top: 5rem;
+            border: 1px solid #E8E8E8;
+            border-radius: 4px;
+            box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.1);
+        }
+        
+
+        .chat-box {
+            background-color: #f2f2f2;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            overflow-y: scroll;
+            height: 300px;
+        }
+
+        .chat-message {
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .chat-message p {
+            margin: 0;
+            padding: 0;
+        }
+
+        .assistant {
+            color: #007BFF;
+        }
+
+        .value {
+            color: #6610f2;
+        }
+
+        .chat-input {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .chat-input button {
+            background-color:#FF6B6B;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .chat-input button:hover {
+            background-color: #5f32f2;
+        }
+        .nav-love {
+            margin-left: auto;
+            font-weight: bold;
+            color: red;
+        }
+        .header {
+            text-align: center;
+            padding: 60px 0 20px 0;
+        }
+
+        .header h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .header h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+           
+        }
+
+        .intro-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form-container {
+            background-color: #FFFFFF;
+            padding: 40px;
+            margin: 3rem;
+            border: 1px solid #E8E8E8;
+            border-radius: 4px;
+            box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.1);
+        }
+
+        .form-control {
+            border: 1px solid #EFEFEF;
+            border-radius: 4px;
+            box-shadow: none;
+        }
+
+        .submit {
+            margin-top: 20px;
+            width: 100%;
+            padding: 10px;
+            background-color: #FF6B6B;
+            border: 1px solid #FF6B6B;
+            color: #fff;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+
+        .submit:hover {
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+          <a href="index.html" class ="nav-link">Home</a>
+          <a href="login.html" class="nav-link">Login</a>
+          <a href="mypage.html" class="nav-link">My Page</a>
+          <a href="#" class="nav-link">Today's Menu</a>
+          <a href="review.html" class="nav-link">Review</a>
+        </div>
+    </nav>
+    <div class = "header">
+        <h1>Cook Chat</h1>
+        <h3>모두를 위한 레시피</h3>
+        <p></p>
+    </div>
+
+    <div id="intro" class="intro-container">
+        <div class="form-container">
+            <form>
+                <div class="form-row">
+                    <div class="col-md-6 form-group">
+                        <label for="name">Name</label>
+                        <input id="name" type="text" class="form-control" placeholder="Enter name">
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label for="age">Age</label>
+                        <select id="age" name="age" class="form-control">
+                            <option selected>Please select...</option>
+                            <option value="10-19">10-19</option>
+                            <option value="20-29">20-29</option>
+                            <option value="30-39">30-39</option>
+                            <option value="40-49">40-49</option>
+                            <option value="50+">50+</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="col-md-6 form-group">
+                        <label for="gender">Gender</label>
+                        <select id="gender" name = "gender" class="form-control">
+                            <option selected>Please select...</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label for="food_preference">Food Preference</label>
+                        <select id="food_preference" name = "food_preference" class="form-control">
+                            <option selected>Please select...</option>
+                            <option value="Vegetarian">Vegetarian</option>
+                            <option value="Vegan">Vegan</option>
+                            <option value="Pescatarian">Pescatarian</option>
+                            <option value="Gluten-Free">Gluten-Free</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                        <label for="allergy">Allergy Information</label>
+                        <select id="allergy" name = "allergy" class="form-control">
+                            <option selected>Please select...</option>
+                            <option value="None">None</option>
+                            <option value="Peanuts">Peanuts</option>
+                            <option value="Tree nuts">Tree nuts</option>
+                            <option value="Milk">Milk</option>
+                            <option value="Eggs">Eggs</option>
+                            <option value="Wheat">Wheat</option>
+                            <option value="Fish">Fish</option>
+                            <option value="Shellfish">Shellfish</option>
+                            <option value="Soy">Soy</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                <button type="submit" class="submit">오늘의 추천 레시피</button>
+            </form>
+        </div>
+    </div>
+
+    
+    <div id="chat" class="chat-container" style="display: none;">
+        <div class="chat-box">
+            <div class = "chat-message">
+                <p class="assistant">레시피에 대해서 물어봐 주세요!</p>
+            </div>
+        </div>
+        <div class="chat-input">
+            <input type="text" placeholder="Type your message here...">
+            <button>Send</button>
+        </div>
+    </div>
+    
+    <script>
+        const chatBox = document.querySelector('.chat-box');
+        let userMessages = [];
+        let assistantMessages = [];
+        let mypage = '';
+
+        function start() {
+            const name = document.getElementById('name').value;
+            const age = document.getElementById('age').value;
+            const gender = document.getElementById('gender').value;
+            const food_preference = document.getElementById('food_preference').value;
+            const allergy = document.getElementById('allergy').value;
+            // if (allery === '') {
+            //     alert('알러지 정보를 입력해주세요.')
+            //     return;
+            // }
+            mypage = name + age + gender + food_preference + allergy;
+
+            document.getElementById("intro").style.display = "none";
+            document.getElementById("chat").style.display = "block";
+            
+        }
+         document.querySelector('.submit').addEventListener('click', function (event) {
+        event.preventDefault();
+        start();
+      });
+
+        const sendMessage = async () => {
+            const chatInput = document.querySelector('.chat-input input');
+            const chatMessage = document.createElement('div');
+            chatMessage.classList.add('chat-message');
+            chatMessage.innerHTML = `
+    <p>${chatInput.value}</p>
+  `;
+            chatBox.appendChild(chatMessage);
+            
+            //userMessage 메세지 추가
+            userMessages.push(chatInput.value);
+
+            chatInput.value = '';
+
+            const response = await fetch('http://localhost:3000/cookChat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    mypage: mypage,
+                    userMessages: userMessages,
+                    assistantMessages: assistantMessages,
+                })
+            });
+
+            const data = await response.json();
+            
+            //assistantMessage 메세지 추가
+            assistantMessages.push(data.assistant);
+
+            const astrologerMessage = document.createElement('div');
+            astrologerMessage.classList.add('chat-message');
+            astrologerMessage.innerHTML = `
+    <p class='assistant'>${data.assistant}</p>
+  `;
+            chatBox.appendChild(astrologerMessage);
+        };
+
+        document.querySelector('.chat-input button').addEventListener('click', sendMessage);
+    </script>
+
+</body>
+
+</html>
